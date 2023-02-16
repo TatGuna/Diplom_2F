@@ -1,5 +1,6 @@
 package order;
 
+import org.junit.After;
 import users.RestAssuredUser;
 import users.UserClient;
 import users.UsersData;
@@ -54,5 +55,12 @@ public class GetUserOrdersTest extends RestAssuredUser {
                 .statusCode(SC_UNAUTHORIZED)
                 .and()
                 .body(equalTo(UNAUTH_LOGIN));
+    }
+
+    @After
+    public void delete() {
+        userClient.deleteUser(token); //то был не Гарольд, скрывающий боль,
+        //а Гарольд, скрывающий косяк в тестах. Но в итоге он даже косяк в тестах скрыть не мог,
+        //что уж там о боли говорить))
     }
 }
