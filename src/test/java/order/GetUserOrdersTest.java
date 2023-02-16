@@ -1,6 +1,7 @@
 package order;
 
 import org.junit.After;
+import org.junit.Before;
 import users.RestAssuredUser;
 import users.UserClient;
 import users.UsersData;
@@ -12,12 +13,15 @@ import org.junit.Test;
 import static org.apache.http.HttpStatus.*;
 import static org.hamcrest.CoreMatchers.equalTo;
 
+
+
 public class GetUserOrdersTest extends RestAssuredUser {
 
     UsersData usersData;
     private UserClient userClient;
     private String token;
 
+    @Before
     public void setUp() {
         userClient = new UserClient();
         usersData = UsersData.getRandom();
@@ -26,6 +30,9 @@ public class GetUserOrdersTest extends RestAssuredUser {
                 .extract()
                 .path("accessToken");
     }
+
+
+
 
     @Test
     @DisplayName("Get Orders")
@@ -60,7 +67,7 @@ public class GetUserOrdersTest extends RestAssuredUser {
     @After
     public void delete() {
         userClient.deleteUser(token); //то был не Гарольд, скрывающий боль,
-        //а Гарольд, скрывающий косяк в тестах. Но в итоге он даже косяк в тестах скрыть не мог,
+        // а Гарольд, скрывающий косяк в тестах. Но в итоге он даже косяк в тестах скрыть не мог,
         //что уж там о боли говорить))
     }
 }
